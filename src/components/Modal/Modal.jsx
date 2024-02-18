@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import css from './Modal.module.css';
 import { ReactComponent as CloseIcon } from '../../images/cross.svg';
@@ -54,28 +54,25 @@ export function Modal({ onClose, car }) {
 
   const backdropRef = useRef(null);
 
-  const handleBackdropClick = event => {
-    if (event && event.target === backdropRef.current) {
-      onClose(false);
-    }
-  };
-
   useEffect(() => {
     const handleKeyDown = event => {
       if (event.code === 'Escape') {
-        onClose(false);
+        onClose();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('mousedown', handleBackdropClick);
-    document.body.classList.add('body-scroll-lock');
+
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('mousedown', handleBackdropClick);
-      document.body.classList.remove('body-scroll-lock');
     };
-  }, [onClose, handleBackdropClick]);
+  }, [onClose]);
+
+  const handleBackdropClick = event => {
+    if (event && event.target === event.currentTarget) {
+      onClose();
+    }
+  };
 
   return createPortal(
     car && (
