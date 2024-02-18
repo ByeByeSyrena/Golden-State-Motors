@@ -42,7 +42,7 @@ a {
 
 ::-webkit-scrollbar {
   position: absolute;
-  background-color: transparent;
+  background-color: white;
   width: 8px;
 }
 
