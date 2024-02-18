@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/Golden-State-Motors/static/css/main.80e30e91.css",
-    "main.js": "/Golden-State-Motors/static/js/main.db721cbc.js",
-    "static/css/865.1f8a78de.chunk.css": "/Golden-State-Motors/static/css/865.1f8a78de.chunk.css",
-    "static/js/865.7037fdc1.chunk.js": "/Golden-State-Motors/static/js/865.7037fdc1.chunk.js",
-    "static/css/835.373b536a.chunk.css": "/Golden-State-Motors/static/css/835.373b536a.chunk.css",
-    "static/js/835.97732239.chunk.js": "/Golden-State-Motors/static/js/835.97732239.chunk.js",
+    "main.js": "/Golden-State-Motors/static/js/main.d8f279e2.js",
+    "static/css/865.17d241b8.chunk.css": "/Golden-State-Motors/static/css/865.17d241b8.chunk.css",
+    "static/js/865.4062ce57.chunk.js": "/Golden-State-Motors/static/js/865.4062ce57.chunk.js",
+    "static/css/835.8171ed12.chunk.css": "/Golden-State-Motors/static/css/835.8171ed12.chunk.css",
+    "static/js/835.4a2efeaf.chunk.js": "/Golden-State-Motors/static/js/835.4a2efeaf.chunk.js",
     "static/media/pexels-neil-kelly-712618.jpg": "/Golden-State-Motors/static/media/pexels-neil-kelly-712618.0b48752be1927f8aac29.jpg",
     "static/media/pexels-hamann-la-1131575.jpg": "/Golden-State-Motors/static/media/pexels-hamann-la-1131575.e53b471da11da9a6242c.jpg",
     "static/media/pexels-charles-kettor-1005162.jpg": "/Golden-State-Motors/static/media/pexels-charles-kettor-1005162.8754d79dcd0a16428d7d.jpg",
@@ -13,14 +13,14 @@
     "index.html": "/Golden-State-Motors/index.html",
     "static/media/cross.svg": "/Golden-State-Motors/static/media/cross.845bab55806a2f1354b13245beb4cd62.svg",
     "main.80e30e91.css.map": "/Golden-State-Motors/static/css/main.80e30e91.css.map",
-    "main.db721cbc.js.map": "/Golden-State-Motors/static/js/main.db721cbc.js.map",
-    "865.1f8a78de.chunk.css.map": "/Golden-State-Motors/static/css/865.1f8a78de.chunk.css.map",
-    "865.7037fdc1.chunk.js.map": "/Golden-State-Motors/static/js/865.7037fdc1.chunk.js.map",
-    "835.373b536a.chunk.css.map": "/Golden-State-Motors/static/css/835.373b536a.chunk.css.map",
-    "835.97732239.chunk.js.map": "/Golden-State-Motors/static/js/835.97732239.chunk.js.map"
+    "main.d8f279e2.js.map": "/Golden-State-Motors/static/js/main.d8f279e2.js.map",
+    "865.17d241b8.chunk.css.map": "/Golden-State-Motors/static/css/865.17d241b8.chunk.css.map",
+    "865.4062ce57.chunk.js.map": "/Golden-State-Motors/static/js/865.4062ce57.chunk.js.map",
+    "835.8171ed12.chunk.css.map": "/Golden-State-Motors/static/css/835.8171ed12.chunk.css.map",
+    "835.4a2efeaf.chunk.js.map": "/Golden-State-Motors/static/js/835.4a2efeaf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.80e30e91.css",
-    "static/js/main.db721cbc.js"
+    "static/js/main.d8f279e2.js"
   ]
 }
