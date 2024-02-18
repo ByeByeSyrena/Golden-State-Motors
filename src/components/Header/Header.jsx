@@ -1,27 +1,39 @@
 import css from './Header.module.css';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const Header = () => {
   return (
     <header className={css.header}>
       <div className={css.container}>
-        <Link to="/welcome">
+        <NavLink to="/welcome" activeClassName={css.activeLink}>
           <img
             src={require('../../images/icons8-car-50.png')}
             alt="logo"
             className={css.logo}
           />
-        </Link>
+        </NavLink>
         <nav className={css.nav}>
-          <Link to="/welcome" className={css.link}>
+          <NavLink
+            to="/welcome"
+            className={css.link}
+            activeClassName={css.activeLink}
+          >
             About us
-          </Link>
-          <Link to="/home" className={css.link}>
+          </NavLink>
+          <NavLink
+            to="/home"
+            className={css.link}
+            activeClassName={css.activeLink}
+          >
             Catalog
-          </Link>
-          <Link to="/favorites" className={css.link}>
+          </NavLink>
+          <NavLink
+            to="/favorites"
+            className={css.link}
+            activeClassName={css.activeLink}
+          >
             Favorites
-          </Link>
+          </NavLink>
         </nav>
       </div>
     </header>

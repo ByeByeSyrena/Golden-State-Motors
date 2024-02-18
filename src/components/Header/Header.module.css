@@ -52,8 +52,7 @@
   transition: color 0.2s ease;
 }
 
-.link:hover,
-.link:focus {
+.activeClassName {
   color: white;
   scale: 1.1;
 }
