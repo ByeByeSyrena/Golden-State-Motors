@@ -1,5 +1,6 @@
-import css from "./Header.module.css";
-import { Link } from "react-router-dom";
+import css from './Header.module.css';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export const Header = () => {
   return (
@@ -7,7 +8,7 @@ export const Header = () => {
       <div className={css.container}>
         <Link to="/welcome">
           <img
-            src={require("../../images/icons8-car-50.png")}
+            src={require('../../images/icons8-car-50.png')}
             alt="logo"
             className={css.logo}
           />

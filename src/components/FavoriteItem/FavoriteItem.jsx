@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteFavorites } from '../../redux/favorites/favoritesSlice';
 import css from './FavoriteItem.module.css';
+import { ReactComponent as Trash } from '../../images/delete-svgrepo-com.svg';
 
 export const FavoriteItem = ({ car, index, openModal, id }) => {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ export const FavoriteItem = ({ car, index, openModal, id }) => {
 
   return (
     <li key={car.id} className={css.wrapper}>
+      <button type="button" className={css.trashButton} onClick={handleRemove}>
+        <Trash className={css.trash} />
+      </button>
       <div>
         {car.img ? (
           <img
@@ -69,13 +73,6 @@ export const FavoriteItem = ({ car, index, openModal, id }) => {
         onClick={() => openModal(index)}
       >
         Learn More
-      </button>
-      <button
-        type="button"
-        className={css.buttonLearnMore}
-        onClick={handleRemove}
-      >
-        Delete
       </button>
     </li>
   );

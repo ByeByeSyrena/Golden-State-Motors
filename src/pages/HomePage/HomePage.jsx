@@ -13,6 +13,8 @@ import {
 } from '../../redux/catalog/selectors';
 import { getAllCars } from '../../redux/catalog/operations';
 import { InventoryItem } from '../../components/InventoryItem/InventoryItem';
+import { Loader } from 'components/Loader/Loader';
+import NotFound from 'components/NotFound/NotFound';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -70,6 +72,10 @@ const HomePage = () => {
     <>
       <section className={css.container}>
         <Filter onClick={handleFilter} onClearClick={handleClearFilter} />
+        {isLoading && <Loader />}
+        {!isLoading && arrayToRender.length === 0 && (
+          <NotFound className={css.noResults} />
+        )}
         <ul className={css.layout}>
           {arrayToRender.map((item, index) => (
             <InventoryItem
@@ -82,9 +88,11 @@ const HomePage = () => {
           ))}
         </ul>
 
-        {!isLoading && (
-          <LoadMoreButton text="Load more" onClick={handleLoadMore} />
-        )}
+        {!isLoading &&
+          arrayToRender.length !== 0 &&
+          arrayToRender.length <= 32 && (
+            <LoadMoreButton text="Load more" onClick={handleLoadMore} />
+          )}
       </section>
 
       {isOpen && page < 3 && <Modal onClose={closeModal} car={item} />}

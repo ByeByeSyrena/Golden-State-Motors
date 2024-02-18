@@ -1,16 +1,22 @@
-import React from "react";
-import css from "./WelcomePage.module.css";
-import { Link } from "react-router-dom";
+import React from 'react';
+import css from './WelcomePage.module.css';
+import { Link } from 'react-router-dom';
+import { selectOverallIsLoading } from '../../redux/catalog/selectors';
+import { Loader } from 'components/Loader/Loader';
+import { useSelector } from 'react-redux';
 
 export const WelcomePage = () => {
+  const isLoading = useSelector(selectOverallIsLoading);
+
   return (
     <>
       <section className={css.section}>
         <div className={css.container}>
+          {isLoading && <Loader />}
           <div className={css.layout}>
             <img
               className={css.image}
-              src={require("../../images/pexels-hamann-la-1131575.jpg")}
+              src={require('../../images/pexels-hamann-la-1131575.jpg')}
               alt="car"
             />
             <div>
@@ -59,13 +65,13 @@ export const WelcomePage = () => {
             </div>
             <img
               className={css.image}
-              src={require("../../images/pexels-neil-kelly-712618.jpg")}
+              src={require('../../images/pexels-neil-kelly-712618.jpg')}
               alt="car"
             />
 
             <img
               className={css.image}
-              src={require("../../images/pexels-charles-kettor-1005162.jpg")}
+              src={require('../../images/pexels-charles-kettor-1005162.jpg')}
               alt="car"
             />
             <div>

@@ -3,6 +3,7 @@
     margin: 0 auto;
     max-width: 320px;
     min-height: 100vh;
+
     padding: 8px 20px;
   }
 }
@@ -82,6 +83,7 @@
   .layout {
     display: grid;
     grid-template-columns: repeat(4, 274px);
+    grid-template-rows: repeat(1, 400px);
     column-gap: 29px;
     grid-template-rows: repeat(3, 1fr);
     row-gap: 29px;
@@ -115,4 +117,36 @@
 
   border: 1px solid rgba(18, 20, 23, 0.1);
   height: 18px;
+}
+
+.trash {
+  width: 20px;
+  height: 20px;
+  stroke: white;
+}
+
+.trash:hover {
+  stroke: #bf8ce1;
+}
+
+.trashButton {
+  position: relative;
+  bottom: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  background-color: #bf8ce1;
+  transition: background-color 0.3s ease;
+
+  margin: 10px 0px;
+}
+
+.trashButton:hover {
+  background-color: white;
 }

@@ -95,16 +95,6 @@
   justify-content: space-between;
 }
 
-.starButton {
-  position: absolute;
-  border: none;
-  right: 10px;
-  top: 10px;
-  cursor: pointer;
-
-  background-color: transparent;
-}
-
 .label {
   font-weight: bold;
 }
@@ -148,4 +138,14 @@
   fill: transparent;
   stroke: #bf8ce1;
   fill: #bf8ce1;
+}
+
+.starButton {
+  position: absolute;
+  border: none;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+
+  background-color: transparent;
 }
