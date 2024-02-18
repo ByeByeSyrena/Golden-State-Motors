@@ -49,7 +49,7 @@ To run the project locally, follow these steps:
 
 4. Start the development server:
 
-   `npm start`
+   `npm run start`
 
 5. Open your browser and visit http://localhost:3000 to view the application.
 
