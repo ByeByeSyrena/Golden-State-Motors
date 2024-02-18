@@ -1,15 +1,14 @@
-import { createSelector } from "@reduxjs/toolkit";
-import { selectIsLoading } from "../pagedCatalog/selectors";
+import { createSelector } from '@reduxjs/toolkit';
 
-export const selectAllCars = (state) => state.catalog.items;
+export const selectAllCars = state => state.catalog.items;
 
-export const selectFilterOption = (state) => state.filter.selectedOption;
+export const selectFilterOption = state => state.filter.selectedOption;
 
-export const selectLoader = (state) => state.catalog.isLoading;
+export const selectLoader = state => state.catalog.isLoading;
 
-export const selectFilterState = (state) => state.filter;
+export const selectFilterState = state => state.filter;
 
-export const selectCatalogState = (state) => state.catalog;
+export const selectCatalogState = state => state.catalog;
 
 export const selectFilteredCars = createSelector(
   [selectCatalogState, selectFilterState],
@@ -19,7 +18,7 @@ export const selectFilteredCars = createSelector(
     const from = mileage[0];
     const to = mileage[1];
 
-    const filteredCars = items.filter((car) => {
+    const filteredCars = items.filter(car => {
       let isMatch = true;
 
       if (make && car.make !== make) {
@@ -34,7 +33,7 @@ export const selectFilteredCars = createSelector(
 
       if (
         rentalPrice &&
-        parseInt(car.rentalPrice.replace(/\$/g, "")) > rentalPrice
+        parseInt(car.rentalPrice.replace(/\$/g, '')) > rentalPrice
       ) {
         isMatch = false;
       }
@@ -46,9 +45,9 @@ export const selectFilteredCars = createSelector(
   }
 );
 
-export const selectIsLoadingPagedCatalog = (state) =>
+export const selectIsLoadingPagedCatalog = state =>
   state.pagedCatalog.isLoading;
-export const selectIsLoadingCatalog = (state) => state.catalog.isLoading;
+export const selectIsLoadingCatalog = state => state.catalog.isLoading;
 
 export const selectOverallIsLoading = createSelector(
   [selectIsLoadingPagedCatalog, selectIsLoadingCatalog],
