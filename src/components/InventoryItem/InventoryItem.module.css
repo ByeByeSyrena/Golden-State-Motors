@@ -98,13 +98,35 @@
 .star {
   width: 35px;
   height: 35px;
+  stroke: yellow;
+  scale: 1;
+}
+
+.star:hover {
+  width: 35px;
+  height: 35px;
+  stroke: yellow;
+
+  scale: 1.2;
+}
+
+.starred {
+  width: 35px;
+  height: 35px;
+  fill: #bf8ce1;
+  stroke: #bf8ce1;
 }
 
 .starButton {
-  position: absolute;
-
   border: none;
   background-color: transparent;
+}
+
+.starWrapper {
+  width: 274px;
+  height: 1px;
+  display: flex;
+  justify-content: end;
 }
 
 .label {

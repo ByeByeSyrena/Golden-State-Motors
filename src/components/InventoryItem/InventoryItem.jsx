@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import css from './InventoryItem.module.css';
 import { useDispatch } from 'react-redux';
 import { addFavorites } from '../../redux/favorites/favoritesSlice';
@@ -6,6 +6,8 @@ import { ReactComponent as Star } from '../../images/star-alt-4-svgrepo-com.svg'
 
 export const InventoryItem = ({ car, index, openModal }) => {
   const dispatch = useDispatch();
+
+  const [isSelected, setSelected] = useState(false);
 
   const handleAddFavorite = () => {
     dispatch(addFavorites(car));
@@ -30,13 +32,15 @@ export const InventoryItem = ({ car, index, openModal }) => {
   return (
     <li key={car.id} className={css.wrapper}>
       <div>
-        <button
-          type="button"
-          onClick={handleAddFavorite}
-          className={css.starButton}
-        >
-          <Star className={css.star} />
-        </button>
+        <div className={css.starWrapper}>
+          <button
+            type="button"
+            onClick={handleAddFavorite}
+            className={css.starButton}
+          >
+            <Star className={css.star} />
+          </button>
+        </div>
         {car.img ? (
           <img
             src={car.img}
