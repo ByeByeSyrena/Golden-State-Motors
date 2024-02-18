@@ -5,7 +5,7 @@ import { selectOverallIsLoading } from '../../redux/catalog/selectors';
 import { Loader } from 'components/Loader/Loader';
 import { useSelector } from 'react-redux';
 
-export const WelcomePage = () => {
+const WelcomePage = () => {
   const isLoading = useSelector(selectOverallIsLoading);
 
   return (
@@ -112,3 +112,4 @@ export const WelcomePage = () => {
     </>
   );
 };
+export default WelcomePage;

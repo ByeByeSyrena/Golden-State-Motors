@@ -2,10 +2,10 @@ import React, { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import NotFound from './components/NotFound/NotFound';
 import SharedLayout from './components/SharedLayout/SharedLayout';
-import { WelcomePage } from './pages/WelcomePage/WelcomePage';
+import WelcomePage from './pages/WelcomePage/WelcomePage';
+import HomePage from './pages/HomePage/HomePage';
 
-const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
-const FavoritePage = lazy(() => import('./pages/FavoritePage/FavoritePage'));
+import FavoritePage from './pages/FavoritePage/FavoritePage';
 
 function App() {
   return (
