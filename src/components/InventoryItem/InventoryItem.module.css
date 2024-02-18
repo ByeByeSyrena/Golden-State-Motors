@@ -95,38 +95,13 @@
   justify-content: space-between;
 }
 
-.star {
-  width: 35px;
-  height: 35px;
-  stroke: yellow;
-  scale: 1;
-}
-
-.star:hover {
-  width: 35px;
-  height: 35px;
-  stroke: yellow;
-
-  scale: 1.2;
-}
-
-.starred {
-  width: 35px;
-  height: 35px;
-  fill: #bf8ce1;
-  stroke: #bf8ce1;
-}
-
 .starButton {
+  position: absolute;
   border: none;
-  background-color: transparent;
-}
+  right: 10px;
+  top: 10px;
 
-.starWrapper {
-  width: 274px;
-  height: 1px;
-  display: flex;
-  justify-content: end;
+  background-color: transparent;
 }
 
 .label {
@@ -153,4 +128,17 @@
 
   border: 1px solid rgba(18, 20, 23, 0.1);
   height: 18px;
+}
+
+.wrap {
+  position: relative;
+}
+
+.star {
+  fill: transparent;
+  stroke: white;
+}
+
+.star:hover {
+  fill: white;
 }

@@ -41,6 +41,7 @@ const HomePage = () => {
   const arrayToRender = shouldRenderArray1 ? cars : filteredCars;
 
   useEffect(() => {
+    dispatch(clearState());
     return () => {
       dispatch(clearState());
     };

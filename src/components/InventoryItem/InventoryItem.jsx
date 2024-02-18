@@ -1,17 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import css from './InventoryItem.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addFavorites } from '../../redux/favorites/favoritesSlice';
-import { ReactComponent as Star } from '../../images/star-alt-4-svgrepo-com.svg';
+import { ReactComponent as Heart } from '../../images/heart.svg';
+import { selectFavorites } from 'redux/favorites/selectors';
+import { deleteFavorites } from '../../redux/favorites/favoritesSlice';
 
 export const InventoryItem = ({ car, index, openModal }) => {
   const dispatch = useDispatch();
 
   const [isSelected, setSelected] = useState(false);
 
-  const handleAddFavorite = () => {
-    dispatch(addFavorites(car));
+  const favorites = useSelector(selectFavorites);
+
+  const handleToggleFavorite = () => {
+    if (isSelected) {
+      dispatch(deleteFavorites(car.id));
+    } else {
+      dispatch(addFavorites(car));
+    }
+    setSelected(!isSelected);
   };
+
+  useEffect(() => {
+    setSelected(favorites.some(favorite => favorite.id === car.id));
+  }, [favorites, car]);
 
   function splitAddress() {
     let country;
@@ -31,16 +44,14 @@ export const InventoryItem = ({ car, index, openModal }) => {
 
   return (
     <li key={car.id} className={css.wrapper}>
-      <div>
-        <div className={css.starWrapper}>
-          <button
-            type="button"
-            onClick={handleAddFavorite}
-            className={css.starButton}
-          >
-            <Star className={css.star} />
-          </button>
-        </div>
+      <div className={css.wrap}>
+        <button
+          type="button"
+          onClick={handleToggleFavorite}
+          className={css.starButton}
+        >
+          <Heart className={css.star} />
+        </button>
         {car.img ? (
           <img
             src={car.img}
