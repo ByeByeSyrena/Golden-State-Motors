@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Filter } from "../../components/Filter/Filter/Filter";
-import { LoadMoreButton } from "../../components/LoadMoreButton/LoadMoreButton";
-import { Modal } from "../../components/Modal/Modal";
-import { selectItems, selectPage } from "../../redux/pagedCatalog/selectors";
-import { getCars } from "../../redux/pagedCatalog/operations";
-import css from "./HomePage.module.css";
-import { addPage, clearState } from "../../redux/pagedCatalog/catalogSlice";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Filter } from '../../components/Filter/Filter/Filter';
+import { LoadMoreButton } from '../../components/LoadMoreButton/LoadMoreButton';
+import { Modal } from '../../components/Modal/Modal';
+import { selectItems, selectPage } from '../../redux/pagedCatalog/selectors';
+import { getCars } from '../../redux/pagedCatalog/operations';
+import css from './HomePage.module.css';
+import { addPage, clearState } from '../../redux/pagedCatalog/catalogSlice';
 import {
   selectFilteredCars,
   selectOverallIsLoading,
-} from "../../redux/catalog/selectors";
-import { getAllCars } from "../../redux/catalog/operations";
-import { InventoryItem } from "../../components/InventoryItem/InventoryItem";
+} from '../../redux/catalog/selectors';
+import { getAllCars } from '../../redux/catalog/operations';
+import { InventoryItem } from '../../components/InventoryItem/InventoryItem';
 
 const HomePage = () => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const [item, setItem] = useState("");
+  const [item, setItem] = useState('');
 
   const [shouldRenderArray1, setArray1] = useState(true);
 
@@ -26,16 +26,16 @@ const HomePage = () => {
   const filteredCars = useSelector(selectFilteredCars);
   const isLoading = useSelector(selectOverallIsLoading);
 
-  const openModal = (itemIndex) => {
+  const openModal = itemIndex => {
     const selectedItem = cars[itemIndex];
     setItem(selectedItem);
     setIsOpen(true);
-    document.body.classList.add("body-scroll-lock");
+    document.body.classList.add('body-scroll-lock');
   };
 
   const closeModal = () => {
     setIsOpen(false);
-    document.body.classList.remove("body-scroll-lock");
+    document.body.classList.remove('body-scroll-lock');
   };
 
   const arrayToRender = shouldRenderArray1 ? cars : filteredCars;
@@ -81,10 +81,12 @@ const HomePage = () => {
           ))}
         </ul>
 
-        <LoadMoreButton text="Load more" onClick={handleLoadMore} />
+        {!isLoading && (
+          <LoadMoreButton text="Load more" onClick={handleLoadMore} />
+        )}
       </section>
 
-      {isOpen && <Modal onClose={closeModal} car={item} />}
+      {isOpen && page < 3 && <Modal onClose={closeModal} car={item} />}
     </>
   );
 };
