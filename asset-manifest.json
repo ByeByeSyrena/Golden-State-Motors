@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/Golden-State-Motors/static/css/main.80e30e91.css",
-    "main.js": "/Golden-State-Motors/static/js/main.46a37fcf.js",
-    "static/css/528.8f41de19.chunk.css": "/Golden-State-Motors/static/css/528.8f41de19.chunk.css",
-    "static/js/528.94f53bf5.chunk.js": "/Golden-State-Motors/static/js/528.94f53bf5.chunk.js",
+    "main.js": "/Golden-State-Motors/static/js/main.e9506f52.js",
+    "static/css/528.9ef760c8.chunk.css": "/Golden-State-Motors/static/css/528.9ef760c8.chunk.css",
+    "static/js/528.9a1eaf61.chunk.js": "/Golden-State-Motors/static/js/528.9a1eaf61.chunk.js",
     "static/css/246.c78193de.chunk.css": "/Golden-State-Motors/static/css/246.c78193de.chunk.css",
     "static/js/246.582f9beb.chunk.js": "/Golden-State-Motors/static/js/246.582f9beb.chunk.js",
     "static/js/914.16f29bea.chunk.js": "/Golden-State-Motors/static/js/914.16f29bea.chunk.js",
@@ -14,15 +14,15 @@
     "index.html": "/Golden-State-Motors/index.html",
     "static/media/cross.svg": "/Golden-State-Motors/static/media/cross.e4e7d0a1de3045a5396e95d381bd8c39.svg",
     "main.80e30e91.css.map": "/Golden-State-Motors/static/css/main.80e30e91.css.map",
-    "main.46a37fcf.js.map": "/Golden-State-Motors/static/js/main.46a37fcf.js.map",
-    "528.8f41de19.chunk.css.map": "/Golden-State-Motors/static/css/528.8f41de19.chunk.css.map",
-    "528.94f53bf5.chunk.js.map": "/Golden-State-Motors/static/js/528.94f53bf5.chunk.js.map",
+    "main.e9506f52.js.map": "/Golden-State-Motors/static/js/main.e9506f52.js.map",
+    "528.9ef760c8.chunk.css.map": "/Golden-State-Motors/static/css/528.9ef760c8.chunk.css.map",
+    "528.9a1eaf61.chunk.js.map": "/Golden-State-Motors/static/js/528.9a1eaf61.chunk.js.map",
     "246.c78193de.chunk.css.map": "/Golden-State-Motors/static/css/246.c78193de.chunk.css.map",
     "246.582f9beb.chunk.js.map": "/Golden-State-Motors/static/js/246.582f9beb.chunk.js.map",
     "914.16f29bea.chunk.js.map": "/Golden-State-Motors/static/js/914.16f29bea.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.80e30e91.css",
-    "static/js/main.46a37fcf.js"
+    "static/js/main.e9506f52.js"
   ]
 }
