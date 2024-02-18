@@ -50,7 +50,7 @@ export const InventoryItem = ({ car, index, openModal }) => {
           onClick={handleToggleFavorite}
           className={css.starButton}
         >
-          <Heart className={css.star} />
+          <Heart className={` ${isSelected ? css.starred : css.star}`} />
         </button>
         {car.img ? (
           <img
