@@ -1,40 +1,40 @@
-import React, { useState } from "react";
-import css from "./Filter.module.css";
+import React, { useState } from 'react';
+import css from './Filter.module.css';
 
-import { MakeDropdown } from "../MakeDropdown/MakeDropdown";
-import { useDispatch } from "react-redux";
-import { PriceDropdown } from "../PriceDropdown/PriceDropdown";
-import { setFilterOption } from "../../../redux/catalog/filterSlice";
-import { resetFilter } from "../../../redux/catalog/filterSlice";
+import { MakeDropdown } from '../MakeDropdown/MakeDropdown';
+import { useDispatch } from 'react-redux';
+import { PriceDropdown } from '../PriceDropdown/PriceDropdown';
+import { setFilterOption } from '../../../redux/catalog/filterSlice';
+import { resetFilter } from '../../../redux/catalog/filterSlice';
 
 export const Filter = ({ onClick, onClearClick }) => {
-  const [selectedOption, setSelectedOption] = useState("");
-  const [priceTo, setPriceTo] = useState("");
+  const [selectedOption, setSelectedOption] = useState('');
+  const [priceTo, setPriceTo] = useState('');
   const [mileageRange, setMileageRange] = useState([0, 0]);
 
-  const [placeholder, setPlaceholder] = useState("Enter the text");
+  const [placeholder, setPlaceholder] = useState('Enter the text');
 
-  const [option, setPriceOption] = useState("To $");
+  const [toDoll, setPriceOption] = useState('To $');
 
   const dispatch = useDispatch();
 
-  const handleCarSelect = (selectedCar) => {
+  const handleCarSelect = selectedCar => {
     setSelectedOption(selectedCar);
   };
 
-  const handlePriceSelect = (selectedPrice) => {
+  const handlePriceSelect = selectedPrice => {
     setPriceTo(selectedPrice);
   };
 
   const handleMileageChange = (index, value) => {
-    setMileageRange((prevRange) => {
+    setMileageRange(prevRange => {
       const newRange = [...prevRange];
       newRange[index] = Number(value);
       return newRange;
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     dispatch(
       setFilterOption({
@@ -45,24 +45,24 @@ export const Filter = ({ onClick, onClearClick }) => {
     );
   };
 
-  const handlePlaceholder = (car) => {
+  const handlePlaceholder = car => {
     setPlaceholder(car);
   };
 
-  const handlePriceOption = (price) => {
+  const handlePriceOption = price => {
     setPriceOption(price);
   };
 
   const handleClearFilters = () => {
     dispatch(resetFilter());
-    setSelectedOption("");
-    setPriceTo("");
+    setSelectedOption('');
+    setPriceTo('');
     setMileageRange([0, 0]);
-    handlePlaceholder("Enter the text");
-    setPriceOption("To $");
+    handlePlaceholder('Enter the text');
+    setPriceOption('To $');
 
-    document.getElementById("leftInput").value = "";
-    document.getElementById("rightInput").value = "";
+    document.getElementById('leftInput').value = '';
+    document.getElementById('rightInput').value = '';
 
     onClearClick();
   };
@@ -88,7 +88,7 @@ export const Filter = ({ onClick, onClearClick }) => {
         Price / 1 hour
         <PriceDropdown
           onSelectPrice={handlePriceSelect}
-          option={option}
+          toDoll={toDoll}
           onOption={handlePriceOption}
         />
       </label>
@@ -102,14 +102,14 @@ export const Filter = ({ onClick, onClearClick }) => {
             className={css.leftInput}
             min="0"
             type="number"
-            onChange={(e) => handleMileageChange(0, e.target.value)}
+            onChange={e => handleMileageChange(0, e.target.value)}
           />
           <input
             id="rightInput"
             className={css.rightInput}
             min="0"
             type="number"
-            onChange={(e) => handleMileageChange(1, e.target.value)}
+            onChange={e => handleMileageChange(1, e.target.value)}
           />
         </div>
       </div>
