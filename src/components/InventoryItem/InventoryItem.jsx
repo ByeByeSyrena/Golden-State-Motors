@@ -1,8 +1,8 @@
-import React from "react";
-import css from "./InventoryItem.module.css";
-import { useDispatch } from "react-redux";
-import { addFavorites } from "../../redux/favorites/favoritesSlice";
-import { ReactComponent as Star } from "../../images/star-alt-4-svgrepo-com.svg";
+import React from 'react';
+import css from './InventoryItem.module.css';
+import { useDispatch } from 'react-redux';
+import { addFavorites } from '../../redux/favorites/favoritesSlice';
+import { ReactComponent as Star } from '../../images/star-alt-4-svgrepo-com.svg';
 
 export const InventoryItem = ({ car, index, openModal }) => {
   const dispatch = useDispatch();
@@ -16,9 +16,9 @@ export const InventoryItem = ({ car, index, openModal }) => {
     let city;
 
     if (car) {
-      const address = car.address.split(" ");
+      const address = car.address.split(' ');
       country = address[address.length - 1];
-      city = address[address.length - 2];
+      city = address[address.length - 2].replace(/,/g, '');
       return [city, country];
     }
 
@@ -42,22 +42,34 @@ export const InventoryItem = ({ car, index, openModal }) => {
             src={car.img}
             alt={car.make}
             className={css.image}
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: 'cover' }}
           />
         ) : (
-          "No image"
+          'No image'
         )}
         <div className={css.modelPrice}>
           <p>
-            {car.make} <span className={css.modelPricePart}>{car.model}</span>,{" "}
+            {car.make} <span className={css.modelPricePart}>{car.model}</span>,{' '}
             {car.year}
           </p>
           <p>{car.rentalPrice}</p>
         </div>
         <div className={css.modelFeatures}>
-          <p>
-            {arrayAddress[0]} | {arrayAddress[1]} | {car.rentalCompany} |{" "}
-            {car.type} | {car.model} | {car.mileage} |{" "}
+          <p className={css.genInfo}>{arrayAddress[0]}</p>
+          <span className={css.line}></span>
+          <p className={css.genInfo}>{arrayAddress[1]}</p>
+          <span className={css.line}></span>
+          <p className={css.genInfo}>{car.rentalCompany}</p>
+          <span className={css.line}></span>
+          <p className={css.genInfo}>{car.type}</p>
+          <span className={css.line}></span>
+          <p className={css.genInfo}>{car.model}</p>
+          <span className={css.line}></span>
+          <p className={css.genInfo}>
+            {car.mileage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          </p>
+          <span className={css.line}></span>
+          <p className={css.genInfo}>
             {car.accessories[car.accessories.length - 1]}
           </p>
         </div>

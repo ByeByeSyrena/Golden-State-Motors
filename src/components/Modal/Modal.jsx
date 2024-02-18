@@ -19,23 +19,11 @@ export function Modal({ onClose, car }) {
     if (car) {
       const address = car.address.split(' ');
       country = address[address.length - 1];
-      city = address[address.length - 2];
+      city = address[address.length - 2].replace(/,/g, '');
       return [city, country];
     }
 
     return [];
-  }
-
-  function joinFeatures(array1, array2) {
-    if (car) {
-      const accessoriesAndFunctionalities = car ? array1.concat(array2) : [];
-
-      const newArray = accessoriesAndFunctionalities.map(item => ` ${item} |`);
-
-      return newArray;
-    }
-
-    return;
   }
 
   const rentalConditions = () => {
@@ -74,6 +62,28 @@ export function Modal({ onClose, car }) {
     }
   };
 
+  const {
+    make,
+    model,
+    year,
+    type,
+    id,
+    fuelConsumption,
+    engineSize,
+    functionalities,
+    accessories,
+  } = car;
+
+  const accessoriesAndFunctionalities = () => {
+    if (car) {
+      const accessoriesAndFunctionalities = functionalities.concat(accessories);
+
+      return accessoriesAndFunctionalities;
+    }
+
+    return;
+  };
+
   return createPortal(
     car && (
       <div
@@ -88,34 +98,64 @@ export function Modal({ onClose, car }) {
             </button>
           </div>
           <div className={css.contentWrapper}>
-            <img src={car.img} alt={car.make} className={css.image} />
+            <img src={car.img} alt={make} className={css.image} />
             <h1 className={css.title}>
-              {car.make} <span className={css.titlePeace}>{car.model}</span>,{' '}
-              {car.year}
+              {make} <span className={css.titlePeace}>{model}</span>, {year}
             </h1>
-            <p className={css.info}>
-              {arrayAddress[0]} | {arrayAddress[1]} | Id: {car.id} | Year:{' '}
-              {car.year} | Type: {car.type} | Fuel Consumption:{' '}
-              {car.fuelConsumption} | Engine Size: {car.engineSize}
-            </p>
+
+            <div className={css.generalInfoWrapper}>
+              <p className={css.genInfo}>{arrayAddress[0]}</p>
+              <span className={css.line}></span>
+              <p className={css.genInfo}>{arrayAddress[1]}</p>
+              <span className={css.line}></span>
+              <p className={css.genInfo}>Id: {id}</p>
+              <span className={css.line}></span>
+              <p className={css.genInfo}>Year: {year}</p>
+              <span className={css.line}></span>
+              <p className={css.genInfo}>Type: {type}</p>
+              <span className={css.line}></span>
+            </div>
+            <div className={css.generalInfoWrapper}>
+              <p className={css.genInfo}>Fuel Consumption: {fuelConsumption}</p>
+              <span className={css.line}></span>
+              <p className={css.genInfo}>Engine Size: {engineSize}</p>
+            </div>
+
             <p className={css.description}>{car.description}</p>
             <h4 className={css.accessor}>Accessories and functionalities</h4>
-            <p className={css.info}>
-              {joinFeatures(car.accessories, car.functionalities)}
-            </p>
-            <h4>Rental Conditions</h4>
-            <div>
-              <span>
-                Minimum age: <span>{rentalConditions()[0]}</span>{' '}
+            <div className={css.addInfoDiv}>
+              {accessoriesAndFunctionalities().map((item, index) => (
+                <span key={index}>
+                  <span className={css.genInfo}>{item}</span>
+                  {index !== accessoriesAndFunctionalities.length - 1 && (
+                    <span className={css.line}></span>
+                  )}
+                </span>
+              ))}
+            </div>
+            <h4 className={css.rentalConditions}>Rental Conditions</h4>
+            <div className={css.lastWrapper}>
+              <span className={css.roundedSpan}>
+                Minimum age:{' '}
+                <span className={css.blue}>{rentalConditions()[0]}</span>{' '}
               </span>
-              <span>{rentalConditions()[1]}</span>
-              <span>{rentalConditions()[2]}</span>
-              <span>
+              <span className={css.roundedSpan}>{rentalConditions()[1]}</span>
+              <span className={css.roundedSpan}>{rentalConditions()[2]}</span>
+              <span className={css.roundedSpan}>
                 Mileage:{' '}
-                {car.mileage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                <span className={css.blue}>
+                  {car.mileage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                </span>
+              </span>
+              <span className={`${css.roundedSpan} ${css.blue}`}>
+                {`${car.rentalPrice}`.slice(1)}$
               </span>
             </div>
-            <a href="tel:+380730000000">Rental Car</a>
+            <div className={css.rentalCarButton}>
+              <a href="tel:+380730000000" className={css.rentalCarText}>
+                Rental Car
+              </a>
+            </div>
           </div>
         </div>
       </div>
