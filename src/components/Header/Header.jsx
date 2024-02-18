@@ -1,6 +1,5 @@
 import css from './Header.module.css';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
 export const Header = () => {
   return (
