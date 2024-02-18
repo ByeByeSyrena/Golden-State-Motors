@@ -94,7 +94,7 @@ export function Modal({ onClose, car }) {
         <div className={css.modal}>
           <div className={css.crossWrapper}>
             <button type="button" onClick={onClose} className={css.cross}>
-              <CloseIcon />
+              <CloseIcon className={css.animCross} />
             </button>
           </div>
           <div className={css.contentWrapper}>

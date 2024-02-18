@@ -184,6 +184,16 @@
   margin-left: 2px;
 }
 
+.animCross {
+  scale: 1;
+  stroke: black;
+}
+
+.animCross:hover {
+  scale: 1.2;
+  stroke: rgb(52, 112, 255);
+}
+
 .lastWrapper {
   display: flex;
   flex-wrap: wrap;
