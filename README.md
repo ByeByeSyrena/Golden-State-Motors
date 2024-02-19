@@ -66,7 +66,7 @@ To deploy the application to GitHub Pages:
 
 2. Run the following command to build the application:
 
-npm run build
+'npm run build'
 
 3. Once the build process is complete, commit and push the changes to your
    GitHub repository.
