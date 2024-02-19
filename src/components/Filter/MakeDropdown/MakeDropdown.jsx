@@ -1,18 +1,18 @@
-import { useEffect, useRef, useState } from "react";
-import data from "../../../data/makes.json";
-import css from "./MakeDropdown.module.css";
-import { v4 as uuidv4 } from "uuid";
+import { useEffect, useRef, useState } from 'react';
+import data from '../../../data/makes.json';
+import css from './MakeDropdown.module.css';
+import { v4 as uuidv4 } from 'uuid';
 
 export const MakeDropdown = ({ onSelectCar, onPlaceholder, placeholder }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
 
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
 
-  const handleChange = (e) => setSearch(e.target.value);
+  const handleChange = e => setSearch(e.target.value);
   const filteredCars = data.filter(
-    (car) => search.length && car.toLowerCase().includes(search.toLowerCase())
+    car => search.length && car.toLowerCase().includes(search.toLowerCase())
   );
 
   const handleClick = () => {
@@ -22,22 +22,22 @@ export const MakeDropdown = ({ onSelectCar, onPlaceholder, placeholder }) => {
     setIsOpen(!isOpen);
   };
 
-  const handleClickOutside = (event) => {
+  const handleClickOutside = event => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setIsOpen(false);
     }
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
-  const handleOptionClick = (e) => {
+  const handleOptionClick = e => {
     const selectedCar = e.target.textContent;
-    setSearch("");
+    setSearch('');
     onSelectCar(selectedCar);
     onPlaceholder(e.target.textContent);
   };
@@ -55,19 +55,19 @@ export const MakeDropdown = ({ onSelectCar, onPlaceholder, placeholder }) => {
         />
         <button type="button" onClick={handleClick} className={css.arrowDown}>
           <img
-            src={require("../../../images/arrow-down.png")}
+            src={require('../../../images/arrow-down.png')}
             alt="arrow-down"
           />
         </button>
       </div>
-      <div className={`${css.optionWrapper} ${isOpen ? css.open : ""}`}>
+      <div className={`${css.optionWrapper} ${isOpen ? css.open : ''}`}>
         {search
-          ? filteredCars.map((car) => (
+          ? filteredCars.map(car => (
               <button key={uuidv4()} className={css.option}>
                 {car}
               </button>
             ))
-          : data.map((car) => (
+          : data.map(car => (
               <button
                 key={uuidv4()}
                 className={css.option}
