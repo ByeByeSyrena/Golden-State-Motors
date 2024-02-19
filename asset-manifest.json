@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Golden-State-Motors/static/css/main.00fe944b.css",
-    "main.js": "/Golden-State-Motors/static/js/main.26bfa4bf.js",
+    "main.css": "/Golden-State-Motors/static/css/main.e194775e.css",
+    "main.js": "/Golden-State-Motors/static/js/main.aa4405ef.js",
     "static/media/Screenshot_4.png": "/Golden-State-Motors/static/media/Screenshot_4.a1ff606dce9eaa57ea8c.png",
     "static/media/pexels-neil-kelly-712618.jpg": "/Golden-State-Motors/static/media/pexels-neil-kelly-712618.0b48752be1927f8aac29.jpg",
     "static/media/pexels-hamann-la-1131575.jpg": "/Golden-State-Motors/static/media/pexels-hamann-la-1131575.e53b471da11da9a6242c.jpg",
@@ -11,11 +11,11 @@
     "static/media/heart.svg": "/Golden-State-Motors/static/media/heart.f1c5d1ad1de67745f145e928548f8322.svg",
     "static/media/delete-svgrepo-com.svg": "/Golden-State-Motors/static/media/delete-svgrepo-com.b5bd08b720f0710f5343d5336314368b.svg",
     "static/media/cross.svg": "/Golden-State-Motors/static/media/cross.e4e7d0a1de3045a5396e95d381bd8c39.svg",
-    "main.00fe944b.css.map": "/Golden-State-Motors/static/css/main.00fe944b.css.map",
-    "main.26bfa4bf.js.map": "/Golden-State-Motors/static/js/main.26bfa4bf.js.map"
+    "main.e194775e.css.map": "/Golden-State-Motors/static/css/main.e194775e.css.map",
+    "main.aa4405ef.js.map": "/Golden-State-Motors/static/js/main.aa4405ef.js.map"
   },
   "entrypoints": [
-    "static/css/main.00fe944b.css",
-    "static/js/main.26bfa4bf.js"
+    "static/css/main.e194775e.css",
+    "static/js/main.aa4405ef.js"
   ]
 }
