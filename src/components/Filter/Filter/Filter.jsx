@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { PriceDropdown } from '../PriceDropdown/PriceDropdown';
 import { setFilterOption } from '../../../redux/catalog/filterSlice';
 import { resetFilter } from '../../../redux/catalog/filterSlice';
+import { clearState } from 'redux/pagedCatalog/catalogSlice';
 
 export const Filter = ({ onClick, onClearClick }) => {
   const [selectedOption, setSelectedOption] = useState('');
@@ -58,6 +59,8 @@ export const Filter = ({ onClick, onClearClick }) => {
     setPriceTo('');
     setMileageRange([0, 0]);
     setPriceOption('To $');
+
+    dispatch(clearState());
 
     document.getElementById('leftInput').value = '';
     document.getElementById('rightInput').value = '';
