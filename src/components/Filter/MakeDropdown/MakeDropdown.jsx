@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import data from '../../../data/makes.json';
 import css from './MakeDropdown.module.css';
 import { v4 as uuidv4 } from 'uuid';
+import { Each } from 'components/ServiceComponents/Each';
+import { Show } from 'components/ServiceComponents/Show';
 
 export const MakeDropdown = ({ onSelectCar }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,25 +71,36 @@ export const MakeDropdown = ({ onSelectCar }) => {
         </button>
       </div>
       <div className={`${css.optionWrapper} ${isOpen ? css.open : ''}`}>
-        {search
-          ? filteredDropdown.map(car => (
-              <button
-                key={uuidv4()}
-                className={css.option}
-                onClick={handleOptionClick}
-              >
-                {car}
-              </button>
-            ))
-          : data.map(car => (
-              <button
-                key={uuidv4()}
-                className={css.option}
-                onClick={handleOptionClick}
-              >
-                {car}
-              </button>
-            ))}
+        <Show>
+          <Show.When isTrue={search}>
+            <Each
+              of={filteredDropdown}
+              render={(car, index) => (
+                <button
+                  key={uuidv4()}
+                  className={css.option}
+                  onClick={handleOptionClick}
+                >
+                  {car}
+                </button>
+              )}
+            />
+          </Show.When>
+          <Show.Else>
+            <Each
+              of={data}
+              render={(car, index) => (
+                <button
+                  key={uuidv4()}
+                  className={css.option}
+                  onClick={handleOptionClick}
+                >
+                  {car}
+                </button>
+              )}
+            />
+          </Show.Else>
+        </Show>
       </div>
     </div>
   );
