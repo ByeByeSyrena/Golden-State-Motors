@@ -15,6 +15,8 @@ import { getAllCars } from '../../redux/catalog/operations';
 import { InventoryItem } from '../../components/InventoryItem/InventoryItem';
 import { Loader } from 'components/Loader/Loader';
 import NotFound from 'components/NotFound/NotFound';
+import { Each } from 'components/ServiceComponents/Each';
+import { Show } from 'components/ServiceComponents/Show';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -72,30 +74,48 @@ const HomePage = () => {
     <>
       <section className={css.container}>
         <Filter onClick={handleFilter} onClearClick={handleClearFilter} />
-        {isLoading && <Loader />}
-        {!isLoading && arrayToRender.length === 0 && (
-          <NotFound className={css.noResults} />
-        )}
-        <ul className={css.layout}>
-          {arrayToRender.map((item, index) => (
-            <InventoryItem
-              car={item}
-              index={index}
-              openModal={openModal}
-              key={item.id}
-              id={item.id}
-            />
-          ))}
-        </ul>
+        <Show>
+          <Show.When isTrue={isLoading}>
+            <Loader />
+          </Show.When>
 
-        {!isLoading &&
-          arrayToRender.length !== 0 &&
-          arrayToRender.length <= 32 && (
+          <Show.When isTrue={!isLoading && arrayToRender.length === 0}>
+            <NotFound className={css.noResults} />
+          </Show.When>
+
+          <ul className={css.layout}>
+            <Show.When isTrue={arrayToRender.length > 0}>
+              <Each
+                of={arrayToRender}
+                render={(item, index) => (
+                  <InventoryItem
+                    car={item}
+                    index={index}
+                    openModal={openModal}
+                    key={item.id}
+                  />
+                )}
+              />
+            </Show.When>
+          </ul>
+        </Show>
+        <Show>
+          <Show.When
+            isTrue={
+              !isLoading &&
+              arrayToRender.length !== 0 &&
+              arrayToRender.length <= 32
+            }
+          >
             <LoadMoreButton text="Load more" onClick={handleLoadMore} />
-          )}
+          </Show.When>
+        </Show>
+        <Show>
+          <Show.When isTrue={isOpen}>
+            <Modal onClose={closeModal} car={item} />
+          </Show.When>
+        </Show>
       </section>
-
-      {isOpen && page < 3 && <Modal onClose={closeModal} car={item} />}
     </>
   );
 };

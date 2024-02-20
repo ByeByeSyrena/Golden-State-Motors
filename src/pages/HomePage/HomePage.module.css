@@ -94,3 +94,8 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.noItems {
+  width: 600px;
+  height: 450px;
+}

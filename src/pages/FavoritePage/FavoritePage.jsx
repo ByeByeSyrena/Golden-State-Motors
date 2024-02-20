@@ -7,6 +7,8 @@ import { selectFavorites } from '../../redux/favorites/selectors';
 import css from './FavoritePage.module.css';
 import { selectOverallIsLoading } from '../../redux/catalog/selectors';
 import { Loader } from 'components/Loader/Loader';
+import { Show } from 'components/ServiceComponents/Show';
+import { Each } from 'components/ServiceComponents/Each';
 
 const FavoritePage = () => {
   const dispatch = useDispatch();
@@ -33,38 +35,50 @@ const FavoritePage = () => {
   return (
     <>
       <section className={css.container}>
-        {favorites.length === 0 && (
-          <div className={css.imgWrapper}>
-            <img
-              className={css.noItems}
-              src={require('../../images/Screenshot_4.png')}
-              alt="No items"
-            />
-          </div>
-        )}
-        {favorites.length > 0 && (
-          <button
-            type="button"
-            className={css.buttonLearnMore}
-            onClick={handleClearFavorite}
-          >
-            Delete All Favorites
-          </button>
-        )}
-        {isLoading && <Loader />}
-        <ul className={css.layout}>
-          {favorites.length > 0 &&
-            favorites.map((item, index) => (
-              <FavoriteItem
-                car={item}
-                index={index}
-                openModal={openModal}
-                key={item.id}
-                id={item.id}
+        <Show>
+          <Show.When isTrue={favorites.length > 0}>
+            <button
+              type="button"
+              className={css.buttonLearnMore}
+              onClick={handleClearFavorite}
+            >
+              Delete All Favorites
+            </button>
+            <ul className={css.layout}>
+              <Each
+                of={favorites}
+                render={(item, index) => (
+                  <FavoriteItem
+                    car={item}
+                    index={index}
+                    openModal={openModal}
+                    key={item.id}
+                    id={item.id}
+                  />
+                )}
               />
-            ))}
-        </ul>
-        {isOpen && <Modal onClose={closeModal} car={item} />}
+            </ul>
+          </Show.When>
+          <Show.Else>
+            <div className={css.imgWrapper}>
+              <img
+                className={css.noItems}
+                src={require('../../images/Screenshot_4.png')}
+                alt="No items"
+              />
+            </div>
+          </Show.Else>
+          <Show.When isTrue={isLoading}>
+            <Loader />
+          </Show.When>
+        </Show>
+        <Show>
+          <Show.When isTrue={isOpen}>
+            <Show.When isTrue={isOpen}>
+              <Modal onClose={closeModal} car={item} />
+            </Show.When>
+          </Show.When>
+        </Show>
       </section>
     </>
   );

@@ -52,7 +52,6 @@ export const MakeDropdown = ({ onSelectCar, onPlaceholder, placeholder }) => {
           placeholder={placeholder}
           type="text"
           className={css.makeInput}
-          readOnly
         />
         <button type="button" onClick={handleClick} className={css.arrowDown}>
           <img
