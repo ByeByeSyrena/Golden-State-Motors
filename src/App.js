@@ -11,7 +11,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<Navigate to="/welcome" />} />
+        <Route index element={<Navigate to="welcome" />} />
         <Route path="home" element={<HomePage />} />
         <Route path="welcome" element={<WelcomePage />} />
         <Route path="favorites" element={<FavoritePage />} />

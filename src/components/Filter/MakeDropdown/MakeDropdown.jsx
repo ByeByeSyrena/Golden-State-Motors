@@ -71,36 +71,38 @@ export const MakeDropdown = ({ onSelectCar }) => {
         </button>
       </div>
       <div className={`${css.optionWrapper} ${isOpen ? css.open : ''}`}>
-        <Show>
-          <Show.When isTrue={search}>
-            <Each
-              of={filteredDropdown}
-              render={(car, index) => (
-                <button
-                  key={uuidv4()}
-                  className={css.option}
-                  onClick={handleOptionClick}
-                >
-                  {car}
-                </button>
-              )}
-            />
-          </Show.When>
-          <Show.Else>
-            <Each
-              of={data}
-              render={(car, index) => (
-                <button
-                  key={uuidv4()}
-                  className={css.option}
-                  onClick={handleOptionClick}
-                >
-                  {car}
-                </button>
-              )}
-            />
-          </Show.Else>
-        </Show>
+        <div className={css.scrollWrapper}>
+          <Show>
+            <Show.When isTrue={search}>
+              <Each
+                of={filteredDropdown}
+                render={(car, index) => (
+                  <button
+                    key={uuidv4()}
+                    className={css.option}
+                    onClick={handleOptionClick}
+                  >
+                    {car}
+                  </button>
+                )}
+              />
+            </Show.When>
+            <Show.Else>
+              <Each
+                of={data}
+                render={(car, index) => (
+                  <button
+                    key={uuidv4()}
+                    className={css.option}
+                    onClick={handleOptionClick}
+                  >
+                    {car}
+                  </button>
+                )}
+              />
+            </Show.Else>
+          </Show>
+        </div>
       </div>
     </div>
   );
