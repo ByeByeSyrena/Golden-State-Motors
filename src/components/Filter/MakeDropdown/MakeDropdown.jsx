@@ -71,7 +71,11 @@ export const MakeDropdown = ({ onSelectCar }) => {
       <div className={`${css.optionWrapper} ${isOpen ? css.open : ''}`}>
         {search
           ? filteredDropdown.map(car => (
-              <button key={uuidv4()} className={css.option}>
+              <button
+                key={uuidv4()}
+                className={css.option}
+                onClick={handleOptionClick}
+              >
                 {car}
               </button>
             ))
