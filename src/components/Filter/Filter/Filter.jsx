@@ -12,14 +12,17 @@ export const Filter = ({ onClick, onClearClick }) => {
   const [priceTo, setPriceTo] = useState('');
   const [mileageRange, setMileageRange] = useState([0, 0]);
 
-  const [placeholder, setPlaceholder] = useState('Enter the text');
-
   const [toDoll, setPriceOption] = useState('To $');
 
   const dispatch = useDispatch();
 
   const handleCarSelect = selectedCar => {
-    setSelectedOption(selectedCar);
+    if (selectedCar) {
+      const adjust = [...selectedCar.toLowerCase()].slice(1);
+      const adjustedString = adjust.join('');
+      const selectedAdjusted = selectedCar[0].toUpperCase() + adjustedString;
+      setSelectedOption(selectedAdjusted);
+    }
   };
 
   const handlePriceSelect = selectedPrice => {
@@ -45,10 +48,6 @@ export const Filter = ({ onClick, onClearClick }) => {
     );
   };
 
-  const handlePlaceholder = car => {
-    setPlaceholder(car);
-  };
-
   const handlePriceOption = price => {
     setPriceOption(price);
   };
@@ -58,11 +57,11 @@ export const Filter = ({ onClick, onClearClick }) => {
     setSelectedOption('');
     setPriceTo('');
     setMileageRange([0, 0]);
-    handlePlaceholder('Enter the text');
     setPriceOption('To $');
 
     document.getElementById('leftInput').value = '';
     document.getElementById('rightInput').value = '';
+    document.getElementById('makeInput').value = '';
 
     onClearClick();
   };
@@ -78,11 +77,7 @@ export const Filter = ({ onClick, onClearClick }) => {
       </button>
       <label className={css.label}>
         Car brand
-        <MakeDropdown
-          onSelectCar={handleCarSelect}
-          onPlaceholder={handlePlaceholder}
-          placeholder={placeholder}
-        />
+        <MakeDropdown onSelectCar={handleCarSelect} />
       </label>
       <label className={css.label}>
         Price / 1 hour

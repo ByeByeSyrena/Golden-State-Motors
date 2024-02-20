@@ -3,17 +3,24 @@ import data from '../../../data/makes.json';
 import css from './MakeDropdown.module.css';
 import { v4 as uuidv4 } from 'uuid';
 
-export const MakeDropdown = ({ onSelectCar, onPlaceholder, placeholder }) => {
+export const MakeDropdown = ({ onSelectCar }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState('');
+  const [filteredDropdown, setfiltereDropdown] = useState([]);
+
+  const make = document.getElementById('makeInput');
 
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
 
-  const handleChange = e => setSearch(e.target.value);
-  const filteredCars = data.filter(
-    car => search.length && car.toLowerCase().includes(search.toLowerCase())
-  );
+  const handleChange = e => {
+    setSearch(e.target.value);
+    onSelectCar(e.target.value);
+    const filteredCars = data.filter(
+      car => search.length && car.toLowerCase().includes(search.toLowerCase())
+    );
+    setfiltereDropdown(filteredCars);
+  };
 
   const handleClick = () => {
     if (!isOpen) {
@@ -37,19 +44,20 @@ export const MakeDropdown = ({ onSelectCar, onPlaceholder, placeholder }) => {
 
   const handleOptionClick = e => {
     const selectedCar = e.target.textContent;
-    setSearch('');
     onSelectCar(selectedCar);
-    onPlaceholder(e.target.textContent);
+    make.value = e.target.textContent;
+    setSearch('');
   };
 
   return (
     <div className={css.wrapper} ref={dropdownRef}>
       <div className={css.makeDiv}>
         <input
+          id="makeInput"
           ref={inputRef}
           onChange={handleChange}
           onClick={handleClick}
-          placeholder={placeholder}
+          placeholder="Enter the text"
           type="text"
           className={css.makeInput}
         />
@@ -62,7 +70,7 @@ export const MakeDropdown = ({ onSelectCar, onPlaceholder, placeholder }) => {
       </div>
       <div className={`${css.optionWrapper} ${isOpen ? css.open : ''}`}>
         {search
-          ? filteredCars.map(car => (
+          ? filteredDropdown.map(car => (
               <button key={uuidv4()} className={css.option}>
                 {car}
               </button>
