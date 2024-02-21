@@ -13,8 +13,6 @@ export const Filter = ({ onClick, onClearClick }) => {
   const [priceTo, setPriceTo] = useState('');
   const [mileageRange, setMileageRange] = useState([0, 0]);
 
-  const [toDoll, setPriceOption] = useState('To $');
-
   const dispatch = useDispatch();
 
   const handleCarSelect = selectedCar => {
@@ -49,22 +47,18 @@ export const Filter = ({ onClick, onClearClick }) => {
     );
   };
 
-  const handlePriceOption = price => {
-    setPriceOption(price);
-  };
-
   const handleClearFilters = () => {
     dispatch(resetFilter());
     setSelectedOption('');
     setPriceTo('');
     setMileageRange([0, 0]);
-    setPriceOption('To $');
 
     dispatch(clearState());
 
     document.getElementById('leftInput').value = '';
     document.getElementById('rightInput').value = '';
     document.getElementById('makeInput').value = '';
+    document.getElementById('priceInput').value = '';
 
     onClearClick();
   };
@@ -84,11 +78,7 @@ export const Filter = ({ onClick, onClearClick }) => {
       </label>
       <label className={css.label}>
         Price / 1 hour
-        <PriceDropdown
-          onSelectPrice={handlePriceSelect}
-          toDoll={toDoll}
-          onOption={handlePriceOption}
-        />
+        <PriceDropdown onSelectPrice={handlePriceSelect} />
       </label>
       <div className={`${css.label}`}>
         <span className={`${css.test}`}>Car mileage / km</span>

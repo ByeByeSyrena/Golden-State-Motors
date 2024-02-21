@@ -3,12 +3,11 @@ import data from '../../../data/makes.json';
 import css from './MakeDropdown.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { Each } from 'components/ServiceComponents/Each';
-import { Show } from 'components/ServiceComponents/Show';
 
 export const MakeDropdown = ({ onSelectCar }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState('');
-  const [filteredDropdown, setfiltereDropdown] = useState([]);
+  const [filteredDropdown, setFilteredDropdown] = useState([]);
 
   const make = document.getElementById('makeInput');
 
@@ -16,12 +15,15 @@ export const MakeDropdown = ({ onSelectCar }) => {
   const dropdownRef = useRef(null);
 
   const handleChange = e => {
-    setSearch(e.target.value);
-    onSelectCar(e.target.value);
+    const inputValue = e.target.value;
+    setSearch(inputValue);
+    onSelectCar(inputValue);
     const filteredCars = data.filter(
-      car => search.length && car.toLowerCase().includes(search.toLowerCase())
+      car =>
+        inputValue.length &&
+        car.toLowerCase().includes(inputValue.toLowerCase())
     );
-    setfiltereDropdown(filteredCars);
+    setFilteredDropdown(filteredCars);
   };
 
   const handleClick = () => {
@@ -52,7 +54,7 @@ export const MakeDropdown = ({ onSelectCar }) => {
   };
 
   return (
-    <div className={css.wrapper} ref={dropdownRef}>
+    <div className={css.wrapper}>
       <div className={css.makeDiv}>
         <input
           id="makeInput"
@@ -70,38 +72,38 @@ export const MakeDropdown = ({ onSelectCar }) => {
           />
         </button>
       </div>
-      <div className={`${css.optionWrapper} ${isOpen ? css.open : ''}`}>
+      <div
+        ref={dropdownRef}
+        className={`${css.optionWrapper} ${isOpen ? css.open : ''}`}
+      >
         <div className={css.scrollWrapper}>
-          <Show>
-            <Show.When isTrue={search}>
-              <Each
-                of={filteredDropdown}
-                render={(car, index) => (
-                  <button
-                    key={uuidv4()}
-                    className={css.option}
-                    onClick={handleOptionClick}
-                  >
-                    {car}
-                  </button>
-                )}
-              />
-            </Show.When>
-            <Show.Else>
-              <Each
-                of={data}
-                render={(car, index) => (
-                  <button
-                    key={uuidv4()}
-                    className={css.option}
-                    onClick={handleOptionClick}
-                  >
-                    {car}
-                  </button>
-                )}
-              />
-            </Show.Else>
-          </Show>
+          {search ? (
+            <Each
+              of={filteredDropdown}
+              render={(car, index) => (
+                <button
+                  key={uuidv4()}
+                  className={css.option}
+                  onClick={handleOptionClick}
+                >
+                  {car}
+                </button>
+              )}
+            />
+          ) : (
+            <Each
+              of={data}
+              render={(car, index) => (
+                <button
+                  key={uuidv4()}
+                  className={css.option}
+                  onClick={handleOptionClick}
+                >
+                  {car}
+                </button>
+              )}
+            />
+          )}
         </div>
       </div>
     </div>

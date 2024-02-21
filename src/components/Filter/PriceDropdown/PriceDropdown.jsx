@@ -1,43 +1,88 @@
-import { useState } from 'react';
+import { Each } from 'components/ServiceComponents/Each';
+import { useEffect, useRef, useState } from 'react';
 import css from './PriceDropdown.module.css';
 
-export const PriceDropdown = ({ onSelectPrice, toDoll, onOption }) => {
+export const PriceDropdown = ({ onSelectPrice }) => {
   const [isOpen, setIsOpen] = useState(false);
   const prices = createPrices(0, 200, 10);
 
+  const refPriceInput = useRef(null);
+  const refDropdownInput = useRef(null);
+
+  const price = document.getElementById('priceInput');
+
   const handleChange = e => {
     onSelectPrice(e.target.value);
-    onOption(e.target.value);
   };
 
-  const toggleDropdown = () => {
+  const handleClick = e => {
+    if (!isOpen) {
+      refPriceInput.current?.focus();
+    }
     setIsOpen(!isOpen);
   };
 
+  const handleClickOutside = event => {
+    if (
+      refDropdownInput.current &&
+      !refDropdownInput.current.contains(event.target)
+    ) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleOptionClick = e => {
+    const selectedPrice = e.target.textContent;
+    onSelectPrice(selectedPrice);
+    price.value = e.target.textContent;
+  };
+
   return (
-    <div className={css.wrapper} onClick={toggleDropdown}>
-      <span className={css.backspan}>
+    <>
+      <div className={css.wrapper}>
+        <input
+          id="priceInput"
+          ref={refPriceInput}
+          onClick={handleClick}
+          onChange={handleChange}
+          className={`${css.backspan}`}
+        />
+        <button onClick={handleClick} className={css.arrowDown}></button>
         <img
           src={require('../../../images/arrow-down.png')}
           alt="arrow-down"
           className={css.arrowDown}
         />
-      </span>
-      <select
-        value={toDoll}
-        onChange={handleChange}
-        className={`${css.select} ${isOpen ? css.open : ''}`}
+        <span className={css.to}>To $</span>
+      </div>
+      <div
+        className={`${css.optionWrapper} ${isOpen ? css.open : ''}`}
+        ref={refDropdownInput}
       >
-        <option value={toDoll} disabled hidden className={css.defaultOption}>
-          {toDoll}
-        </option>
-        {prices.map(price => (
-          <option key={price} value={price} className={css.option}>
-            {price}
-          </option>
-        ))}
-      </select>
-    </div>
+        <div className={css.scrollWrapper}>
+          <Each
+            of={prices}
+            render={(price, index) => (
+              <button
+                type="button"
+                key={price}
+                className={css.option}
+                onClick={handleOptionClick}
+              >
+                {price}
+              </button>
+            )}
+          />
+        </div>
+      </div>
+    </>
   );
 };
 
